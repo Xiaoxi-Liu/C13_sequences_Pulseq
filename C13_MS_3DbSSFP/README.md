@@ -17,6 +17,9 @@ Different RF pulses can be set via 'set sequence parameters'
 We have updated the corresponding functions in the toppe GitHub repository (develop branch), please check whether you are using the updated version.
 
 Reference: 
+
 [1] Tang, Shuyu, et al. "A metabolite‐specific 3D stack‐of‐spiral bSSFP sequence for improved lactate imaging in hyperpolarized [1‐13C] pyruvate studies on a 3T clinical scanner." Magnetic resonance in medicine 84.3 (2020): 1113-1125.
+
 [2] Liu, Xiaoxi, et al. "A metabolite specific 3D stack-of-spirals bSSFP sequence for improved bicarbonate imaging in hyperpolarized [1-13C] Pyruvate MRI." Journal of Magnetic Resonance 353 (2023): 107518.
+
 [3] Liu, Xiaoxi, et al. "Development of specialized magnetic resonance acquisition techniques for human hyperpolarized [13C, 15N2] urea+[1‐13C] pyruvate simultaneous perfusion and metabolic imaging." Magnetic resonance in medicine 88.3 (2022): 1039-1054.
