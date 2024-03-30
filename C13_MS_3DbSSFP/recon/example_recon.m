@@ -2,7 +2,7 @@ clear all, clc
 
 % addpath
 addpath('../orchestra-sdk-2.1-1.matlab'); % add orchestra path
-rawdata_path = '../Exam258/Series23/';  addpath (rawdata_path); % add rawdatapath
+rawdata_path = '../Exam258/Series23/';  % add rawdatapath
 load('../ktraj_C1_0324_3DbSSFP.mat'); % load ktrajectory info.: k & dcf
 
 rawdata = read_raw_ScanArchive(rawdata_path);

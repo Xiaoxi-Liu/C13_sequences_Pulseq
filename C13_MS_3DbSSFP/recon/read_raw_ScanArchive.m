@@ -1,9 +1,7 @@
 function rawdata = read_raw_ScanArchive(path)
 
 tmp = dir([path 'Scan*.h5']); 
-archive_name = tmp(end).name;
-
-archive = GERecon('Archive.Load', archive_name);
+archive = GERecon('Archive.Load', [tmp(end).folder '/' tmp(end).name]);
 ControlCountAll = archive.ControlCount;
 NumTR = ControlCountAll - 1;
 for n = 1:ControlCountAll
