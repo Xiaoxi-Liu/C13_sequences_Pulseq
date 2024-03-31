@@ -2,6 +2,7 @@ clear all, clc
 
 % addpath
 addpath('../orchestra-sdk-2.1-1.matlab'); % add orchestra path
+addpath('../utils'); % http://web.stanford.edu/class/ee369c/mfiles/gridkb.m
 rawdata_path = '../Exam258/Series23/';  % add rawdatapath
 load('../ktraj_C1_0324_3DbSSFP.mat'); % load ktrajectory info.: k & dcf
 
@@ -22,7 +23,7 @@ dcf = repmat(dcf, [1 ceil(np/nshot)]);
 data = rawdata;
 ims = zeros(nfov,nfov,ncoil,np);
 for i = 1:np
-    ims(:,:,:,i) = gridkb_batch(data(:,:,i),k(:,i),dcf(:,i),nfov,1.2,4.5);
+    ims(:,:,:,i) = gridkb(data(:,:,i),k(:,i),dcf(:,i),nfov,1.2,4.5);
 end
 ims = reshape(ims,[nfov nfov ncoil nshot slice nmet nT]);
 ims(:,:,:,:,kz_list,:,:) = ims;
