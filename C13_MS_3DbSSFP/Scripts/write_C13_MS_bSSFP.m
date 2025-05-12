@@ -10,8 +10,7 @@ for i = 1:para.nmet
     path = dir([RF_path '*' para.met_name(i,:) '*.mat']); 
     load(path.name);
     rf2p = rf2pulseq(rf, dwell, sys.rfRasterTime, sys);
-    rf_bssfp = mr.makeArbitraryRf(rf2p, abs(sum(rf2p*sys.rfRasterTime))*(2*pi)/180*pi, 'system', sys);
-    rf_bssfp.signal = rf_bssfp.signal/max(abs(rf_bssfp.signal))*max(abs(rf2p));
+    rf_bssfp = mr.makeArbitraryRf(rf2p, 2*pi*abs(sum(rf2p*sys.rfRasterTime)), 'system', sys);
     rf_ex{i} = rf_bssfp;
     para.TR(i) = TR;
 end
@@ -59,8 +58,8 @@ kz_order = cal_kz(para.nz,1);
 for ntp = 1:para.nT
     for nmet = 1:para.nmet
         gz_met.delay = mr.calcDuration(rf_ex{nmet}) + gz.delay;
-        rf_ex_met{nmet}.freqOffset = -1*para.freqshift(nmet);
-        adc.freqOffset = -1*para.freqshift(nmet); 
+        rf_ex_met{nmet}.freqOffset = para.freqshift(nmet);
+        adc.freqOffset = para.freqshift(nmet); 
         for ncat = 1:length(para.cat_FA)
             rf_ex_met{nmet}.signal = para.cat_FA(ncat)*para.FA(nmet)/90*rf_ex{nmet}.signal;
             rf_ex_met{nmet}.phaseOffset = mod(ncat,2)*pi;
