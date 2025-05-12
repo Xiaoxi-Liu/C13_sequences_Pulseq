@@ -12,8 +12,7 @@ fovmin = min(fov);
 load(RF_path);
 
 rf2p = rf2pulseq(rf, dwell, sys.rfRasterTime, sys);
-rf_ex = mr.makeArbitraryRf(rf2p, abs(sum(rf2p*sys.rfRasterTime))*(2*pi)/180*pi, 'system', sys);
-rf_ex.signal = rf_ex.signal/max(abs(rf_ex.signal))*max(abs(rf2p)); 
+rf_ex = mr.makeArbitraryRf(rf2p, 2*pi*abs(sum(rf2p*sys.rfRasterTime)), 'system', sys);
 
 Gss = g.*sys.gamma.*maxslc/para.sth; % T/m -> Hz/m
 gzRF = mr.makeArbitraryGrad('z', squeeze(Gss), 'delay', sys.rfDeadTime, 'system', sys);
@@ -69,8 +68,8 @@ for ntp = 1:para.nT
             rf_ex_met.phaseOffset = rf_phase/180*pi;
             rf_ex_met.signal = abs(rf_ex.signal)*para.FA(nmet)/90.*exp(1i*(phase*2*pi*ceil((nslc-para.nz/2-1))*para.slc_sep+angle(rf_ex.signal)));
             adc.phaseOffset = rf_phase/180*pi;
-            rf_ex_met.freqOffset = -1*para.freqshift(nmet);
-            adc.freqOffset = -1*para.freqshift(nmet);
+            rf_ex_met.freqOffset = para.freqshift(nmet);
+            adc.freqOffset = para.freqshift(nmet);
             rf_inc = mod(rf_inc+rfSpoilingInc, 360.0);
             rf_phase = mod(rf_phase+rf_inc, 360.0);
             seq.addBlock(rf_ex_met, gzRF, mr.makeLabel('SET', 'TRID', nslc+(nmet-1)*para.nz));
